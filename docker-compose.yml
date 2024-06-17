@@ -6,6 +6,8 @@ services:
     container_name: dennis
     ports:
       - "8080:80"
+    networks:
+      - red1
 
   php:
     #Nombre de la imagen
@@ -13,6 +15,8 @@ services:
     container_name: dennisBack
     ports:
       - "8081:80"
+    networks:
+      - red1
 
   apache:
     #Nombre de la imagen
@@ -21,13 +25,37 @@ services:
     ports:
       - "8082:80"
 
+
   python1:
     build:
       context: ./python
       dockerfile: dockerfile
     container_name: Ejemplo
+      #Primero el puerto de host y despues el contenerdo
     ports:
-      - "8083:80"
+      - "8083:5000"
+    volumes:
+    #Primero la ruta de host y despues el contenerdo
+      - ./datos:/app/data
+
+
+  python2:
+    build:
+      context: ./python2
+      dockerfile: dockerfile
+    container_name: Ejemplo2
+      #Primero el puerto de host y despues el contenerdo
+    ports:
+      - "8084:5005"
+    volumes:
+    #Primero la ruta de host y despues el contenerdo
+      - ./datos:/app/data
+
+networks:
+  red1:
+volumes:
+  datos:
+
 
 
 
