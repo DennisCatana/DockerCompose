@@ -1,0 +1,33 @@
+version: '3'
+services:
+  web:
+    #Nombre de la imagen
+    image: nginx
+    container_name: dennis
+    ports:
+      - "8080:80"
+
+  php:
+    #Nombre de la imagen
+    image: phpmyadmin
+    container_name: dennisBack
+    ports:
+      - "8081:80"
+
+  apache:
+    #Nombre de la imagen
+    image: httpd
+    container_name: dennisBack2
+    ports:
+      - "8082:80"
+
+  python1:
+    build:
+      context: ./python
+      dockerfile: dockerfile
+    container_name: Ejemplo
+    ports:
+      - "8083:80"
+
+
+
